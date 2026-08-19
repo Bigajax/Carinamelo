@@ -30,7 +30,7 @@ export default function ProdutoCard({
         src={produto.imagem}
         alt={produto.alt}
         sizes="(max-width: 640px) 45vw, (max-width: 1024px) 30vw, 23vw"
-        proporcao="4/5"
+        proporcao="aspect-4/5"
         prioridade={prioridade}
         esmaecida={!produto.disponivel}
       >
@@ -44,7 +44,9 @@ export default function ProdutoCard({
       <div className="relative mt-5">
         <span aria-hidden className="absolute inset-x-0 top-0 border-t border-rosa-classico" />
         <div className="relative flex items-start justify-between gap-3 pt-3.5">
-          <div>
+          {/* min-w-0: sem isso o nome não encolhe (mínimo automático do flex) e
+              empurra o punção para fora da tela nas duas colunas do mobile. */}
+          <div className="min-w-0">
             <p className="eyebrow text-[10px] text-vinho/80">
               {NOMES_MATERIAL_CURTO[produto.material]}
             </p>

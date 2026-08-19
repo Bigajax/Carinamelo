@@ -42,7 +42,7 @@ export default function FiltroBarra({
     atual === valor ? undefined : valor;
 
   return (
-    <div className="sticky top-[61px] z-30 border-b border-rosa-classico bg-perola/95 backdrop-blur-sm md:top-[69px]">
+    <div className="sticky top-[101px] z-30 border-b border-rosa-classico bg-perola/95 backdrop-blur-sm md:top-[85px]">
       <div className="mx-auto max-w-[1240px] space-y-3 px-5 py-4 md:px-8">
         {linhasDisponiveis.length > 1 && (
           <div className="flex flex-wrap gap-2">
@@ -140,7 +140,7 @@ export default function FiltroBarra({
             </select>
           </label>
 
-          <label className="flex min-w-[180px] flex-1 items-center gap-2">
+          <label className="flex w-full items-center gap-2 md:min-w-[180px] md:flex-1">
             <span className="sr-only">Buscar peça</span>
             <input
               type="search"
@@ -151,17 +151,21 @@ export default function FiltroBarra({
             />
           </label>
 
-          <p className="tabular text-[13px] text-tinta/70">
-            {total} {total === 1 ? "peça" : "peças"}
-          </p>
+          {/* No mobile o contador e o "limpar" dividem uma linha só, em vez de
+              cair cada um na sua e esticar a barra fixa. */}
+          <div className="flex w-full items-center justify-between gap-3 md:w-auto">
+            <p className="tabular text-[13px] text-tinta/70">
+              {total} {total === 1 ? "peça" : "peças"}
+            </p>
 
-          <button
-            type="button"
-            onClick={aoLimpar}
-            className="eyebrow text-[11px] text-vinho underline-offset-4 hover:underline"
-          >
-            Limpar filtros
-          </button>
+            <button
+              type="button"
+              onClick={aoLimpar}
+              className="eyebrow text-[11px] text-vinho underline-offset-4 hover:underline"
+            >
+              Limpar filtros
+            </button>
+          </div>
         </div>
       </div>
     </div>

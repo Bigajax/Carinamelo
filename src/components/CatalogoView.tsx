@@ -62,7 +62,7 @@ export default function CatalogoView({
             {/* Mantém a hierarquia h1 → h2 → h3 dos cards, sem título visível
                 competindo com o cabeçalho da página. */}
             <h2 className="sr-only">Peças encontradas</h2>
-            <div className="surgir grid grid-cols-2 gap-x-8 gap-y-14 md:grid-cols-3 lg:grid-cols-4">
+            <div className="surgir grid grid-cols-2 gap-x-5 gap-y-12 md:gap-x-8 md:gap-y-14 md:grid-cols-3 lg:grid-cols-4">
             {lista.map((produto, i) => (
               <ProdutoCard key={produto.id} produto={produto} prioridade={i < 4} />
             ))}

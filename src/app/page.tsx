@@ -229,7 +229,7 @@ export default async function Home() {
           </Link>
         </div>
 
-        <div className="mt-10 grid grid-cols-2 gap-x-8 gap-y-14 md:grid-cols-4">
+        <div className="mt-10 grid grid-cols-2 gap-x-5 gap-y-12 md:gap-x-8 md:gap-y-14 md:grid-cols-4">
           {destaques.map((produto, i) => (
             <ProdutoCard key={produto.id} produto={produto} prioridade={i < 2} />
           ))}
