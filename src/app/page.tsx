@@ -172,45 +172,60 @@ export default async function Home() {
       </section>
 
       {/* ── garantia ───────────────────────────────────────────────────── */}
+      {/* A faixa não fala sobre o certificado: ela é o certificado. Mesma moldura
+          deslocada das gravuras, o algarismo carimbado sobre o fio da lateral e as
+          coberturas numeradas como cláusulas. O "5" já anuncia o prazo, então o
+          título não repete o número. */}
       <section className="bg-rosa-nevoa">
-        <div className="mx-auto grid max-w-[1240px] gap-10 px-5 py-20 md:grid-cols-[auto_1fr] md:gap-16 md:px-8 md:py-24">
-          <div className="flex items-start gap-5">
+        <div className="mx-auto max-w-[1240px] px-5 py-20 md:px-8 md:py-28">
+          <div className="relative">
             <span
-              className="display-italico text-vinho"
-              style={{ fontSize: "clamp(96px, 18vw, 176px)", lineHeight: 0.8 }}
               aria-hidden
-            >
-              5
-            </span>
-            <span className="eyebrow pt-3 text-[12px] text-vinho">
-              anos de
-              <br />
-              garantia
-            </span>
-          </div>
-
-          <div>
-            <h2 className="display max-w-[20ch] text-[30px] text-vinho md:text-[38px]">
-              Cinco anos de garantia. Aqui está o que isso cobre.
-            </h2>
-
-            <ul className="mt-8 border-t border-rosa-classico">
-              {COBERTURA.map((item) => (
-                <li
-                  key={item}
-                  className="medida-texto border-b border-rosa-classico py-4 text-[15px] text-tinta"
+              className="absolute inset-0 -translate-x-3 -translate-y-3 border border-vinho/30 md:-translate-x-5 md:-translate-y-5"
+            />
+            <div className="relative grid gap-10 bg-rosa-nevoa px-6 py-8 md:grid-cols-[auto_1fr] md:gap-16 md:px-12 md:py-12">
+              <div className="flex items-start gap-4">
+                <span
+                  className="display-italico -ml-3 -mt-4 text-vinho md:-ml-6 md:-mt-6"
+                  style={{ fontSize: "clamp(104px, 18vw, 184px)", lineHeight: 0.78 }}
+                  aria-hidden
                 >
-                  {item}
-                </li>
-              ))}
-            </ul>
+                  5
+                </span>
+                <span className="eyebrow pt-3 text-[11px] text-vinho">
+                  anos de
+                  <br />
+                  garantia
+                </span>
+              </div>
 
-            <Link
-              href="/garantia"
-              className="eyebrow mt-8 inline-flex items-center rounded-[6px] border border-vinho px-6 py-3.5 text-[12px] text-vinho transition-colors duration-200 hover:bg-vinho hover:text-perola"
-            >
-              Ver detalhes da garantia
-            </Link>
+              <div>
+                <h2 className="display max-w-[26ch] text-[30px] text-vinho md:text-[38px]">
+                  Aqui está o que ela cobre.
+                </h2>
+
+                <ol className="mt-8 border-t border-vinho/25">
+                  {COBERTURA.map((item, i) => (
+                    <li
+                      key={item}
+                      className="flex gap-5 border-b border-vinho/25 py-4 md:gap-8"
+                    >
+                      <span className="tabular shrink-0 pt-0.5 text-[12px] text-vinho/70">
+                        {String(i + 1).padStart(2, "0")}
+                      </span>
+                      <span className="medida-texto text-[15px] text-tinta">{item}</span>
+                    </li>
+                  ))}
+                </ol>
+
+                <Link
+                  href="/garantia"
+                  className="eyebrow mt-8 inline-flex items-center rounded-[6px] border border-vinho px-6 py-3.5 text-[12px] text-vinho transition-colors duration-200 hover:bg-vinho hover:text-perola"
+                >
+                  Ver detalhes da garantia
+                </Link>
+              </div>
+            </div>
           </div>
         </div>
       </section>
