@@ -1,0 +1,153 @@
+@import "tailwindcss";
+
+@theme {
+  /* Cartela definida pela cliente (rose/wine) + dois neutros derivados.
+     Quatro tons rosados chapados não sustentam uma interface inteira: sem um
+     escuro a página fica leitosa, e vinho puro em texto corrido cansa a leitura. */
+  --color-perola: #f5f0ed;
+  --color-rosa-nevoa: #f9d0d6;
+  --color-rosa-classico: #da9ea6;
+  --color-vinho: #6a0b23;
+  --color-vinho-profundo: #3d0715;
+  --color-tinta: #2b1a1f;
+
+  --font-display: var(--font-bodoni), Georgia, "Times New Roman", serif;
+  --font-corpo: var(--font-manrope), ui-sans-serif, system-ui, sans-serif;
+
+  --radius-peca: 4px;
+  --radius-botao: 6px;
+}
+
+/* ── base ────────────────────────────────────────────────────────────────── */
+
+:root {
+  --fio: 1px solid var(--color-rosa-classico);
+}
+
+html {
+  scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  background: var(--color-perola);
+  color: var(--color-tinta);
+  font-family: var(--font-corpo);
+  font-weight: 400;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+
+::selection {
+  background: var(--color-vinho);
+  color: var(--color-perola);
+}
+
+:focus-visible {
+  outline: 2px solid var(--color-vinho);
+  outline-offset: 3px;
+}
+
+/* Sobre fundo escuro o vinho não tem contraste: o foco vira pérola. */
+.escuro :focus-visible {
+  outline-color: var(--color-perola);
+}
+
+/* ── identidade ──────────────────────────────────────────────────────────
+   Classes próprias declaram só identidade visual — nunca position, display,
+   width, margin ou font-size. Em Tailwind v4 elas vêm depois do @import e
+   ganhariam das utilitárias, quebrando o layout de quem as usa. */
+
+.display {
+  font-family: var(--font-display);
+  font-weight: 500;
+  font-optical-sizing: auto;
+  line-height: 1.02;
+  letter-spacing: -0.015em;
+}
+
+/* O itálico da Bodoni aparece em um lugar só no site inteiro:
+   o nome da peça na página do produto. */
+.display-italico {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-weight: 500;
+  line-height: 1.05;
+  letter-spacing: -0.01em;
+}
+
+.eyebrow {
+  font-family: var(--font-corpo);
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  line-height: 1.4;
+}
+
+.tabular {
+  font-variant-numeric: tabular-nums;
+  font-weight: 600;
+}
+
+.medida-texto {
+  max-width: 68ch;
+}
+
+.fio {
+  border-color: var(--color-rosa-classico);
+}
+
+/* ── movimento ───────────────────────────────────────────────────────────── */
+
+@keyframes surgir {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+.surgir {
+  animation: surgir 0.5s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+/* Faixa rotativa: a lista é duplicada no componente, então deslocar 50% do
+   trilho devolve exatamente ao ponto de partida e o laço fica invisível. */
+@keyframes correr {
+  from {
+    transform: translate3d(0, 0, 0);
+  }
+  to {
+    transform: translate3d(-50%, 0, 0);
+  }
+}
+
+.faixa-trilho {
+  animation: correr 38s linear infinite;
+  will-change: transform;
+}
+
+.faixa-losango {
+  background: var(--color-rosa-classico);
+  transform: rotate(45deg);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+  }
+  .surgir {
+    opacity: 1;
+    transform: none;
+  }
+}
